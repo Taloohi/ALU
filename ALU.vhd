@@ -41,7 +41,8 @@ architecture operation of ALU is
 
 	signal op1, op2 : std_logic_vector(7 downto 0);
 	signal opc : std_logic_vector(7 downto 0);
-	signal dones : std_logic;
+	signal done : std_logic;
+	signal result : std_logic_vector(7 downto 0);
 
 	begin
 
@@ -54,25 +55,46 @@ architecture operation of ALU is
 		elsif (clk'event and clk = '1') then
 
 		case state is
+			
 			when S0 => 
-			op1 <= Input_Switch;
+			
+				op1 <= Input_Switch;
+				segment1 <= DS;
+				segment2 <= D0;
+				segment3 <= D0;
 
-
-
-
+				state <= s1;
 
 			when S1 =>
 			
+				op2 <= Input_Switch;
+				segment1 <= DS;
+				segment2 <= D0;
+				segment3 <= D1;
 
+				state <= s2;
 
 				
 			when S2 =>
 				
+				op2 <= Input_Switch;
+				segment1 <= DS;
+				segment2 <= D0;
+				segment3 <= D2;
+
+				state <= S3;
 
 
 			
 			when S3 =>
 			
+				segment1 <= DS;
+				segment2 <= D0;
+				segment3 <= D3;
+
+
+
+
 
 
 		end case;
