@@ -72,7 +72,7 @@ architecture operation of ALU is
 				segment2 <= D0;
 				segment3 <= D1;
 
-				state <= s2;
+				state <= s2; -- Adnan hasn't done anything
 
 				
 			when S2 =>
@@ -91,6 +91,8 @@ architecture operation of ALU is
 				segment1 <= DS;
 				segment2 <= D0;
 				segment3 <= D3;
+
+				
 
 
 
