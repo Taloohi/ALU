@@ -1,0 +1,46 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\taloo\Documents\ALU\simulation\modelsim
+Ealu
+Z1 w1511854196
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z4 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z5 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z6 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z7 dC:\Users\taloo\Documents\ALU\simulation\modelsim
+Z8 8C:/Users/taloo/Documents/ALU/ALU.vhd
+Z9 FC:/Users/taloo/Documents/ALU/ALU.vhd
+l0
+L8
+VS9^`1G:mGjfc`[BR2PzcW0
+!s100 >8UnkdcjR^0?@=H9Y0:j31
+Z10 OV;C;10.1d;51
+31
+!i10b 1
+Z11 !s108 1511854255.777000
+Z12 !s90 -reportprogress|300|-93|-work|work|C:/Users/taloo/Documents/ALU/ALU.vhd|
+Z13 !s107 C:/Users/taloo/Documents/ALU/ALU.vhd|
+Z14 o-93 -work work -O0
+Z15 tExplicit 1
+Aoperation
+R2
+R3
+R4
+R5
+R6
+DEx4 work 3 alu 0 22 S9^`1G:mGjfc`[BR2PzcW0
+l56
+L18
+V`=>DPzXoHONI29EhS@Iki0
+!s100 mWERB[^^;0]Sl0kN5Mhic2
+R10
+31
+!i10b 1
+R11
+R12
+R13
+R14
+R15

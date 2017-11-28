@@ -2,10 +2,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
+
 
 entity ALU is
 	port(Input_Switch: in std_logic_vector(7 downto 0);
-			segment1, segment2: out std_logic_vector(6 downto 0);
+			reset, clk : in std_logic;
+			seven_segment1, seven_segment2, seven_segment3: out std_logic_vector(6 downto 0);
 			LED: out std_logic_vector(7 downto 0));
 
 end ALU;
@@ -38,6 +41,12 @@ architecture operation of ALU is
 	constant DE: std_logic_vector(6 downto 0) := "0000110";
 	constant DF: std_logic_vector(6 downto 0) := "0001110";
 	constant DS: std_logic_vector(6 downto 0) := "0010010";
+
+
+	signal a1, a2: natural range 0 to 255;
+	signal temp: std_logic_vector(7 downto 0);
+	signal ov : std_logic;
+
 
 	signal op1, op2 : std_logic_vector(7 downto 0);
 	signal opc : std_logic_vector(7 downto 0);
@@ -72,7 +81,8 @@ architecture operation of ALU is
 				segment2 <= D0;
 				segment3 <= D1;
 
-				state <= s2; -- Adnan hasn't done anything
+				state <= s2; -- Adnan hasn't done anything 
+				-- Literally nothing
 
 				
 			when S2 =>
@@ -92,13 +102,66 @@ architecture operation of ALU is
 				segment2 <= D0;
 				segment3 <= D3;
 
+				if opc = "00000001" then				
+						temp <= op1 + op2;
+						ov <= '0'; 
+
+				elsif opc = "00000010" then	
+					temp <= op1 - op2;
+		
+
+
+				elsif opc = "00000011" then	--OP1 + 1;
+					temp <= op1 + "00000001";
+					ov <= '0';
+
+				elsif opc = "00000100" then	--OP1 - 1;
+					temp <= op1 - "00000001";
+					
 				
 
 
+				elsif opc = "00000101" then	--OP1 AND OP2;
+					temp <= OP1 and OP2;
+					ov <= '0';
+					
+					
+				elsif opc = "00000110" then	--OP1 OR OP2;
+					temp <= OP1 OR OP2;
+					ov <= '0';
+					
+				elsif opc = "00000111" then	--NOT OP1;
+					temp <= NOT OP1;
+					ov <= '0';
 
 
+				elsif opc = "00001000" then	--OP1 Arithmetic Shift Right;
+				--	temp <= to_stdlogicvector(to_bitvector(OP1) sra to_integer(unsigned(OP2(2 downto 0))));
+					temp <= to_stdlogicvector(to_bitvector(OP1) sra 1);
+					ov <= '0';
+					
+				elsif opc = "00001001" then	--OP1 Arithmetic Shift Left;
+				--	temp <= to_stdlogicvector(to_bitvector(OP1) sla to_integer(unsigned(OP2(2 downto 0))));
+					temp <= to_stdlogicvector(to_bitvector(OP1) sll 1);
+					ov <= '0';
+
+				
+				state <= s0;
 
 
-		end case;
+				end if;
+
+			end case;
+
+
+			result <= temp;
+				
+				
+
+			
+		 
+
 	    end if;
     end process;
+	 
+	 end operation;

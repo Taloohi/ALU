@@ -1,0 +1,42 @@
+|ALU
+Input_Switch[0] => ~NO_FANOUT~
+Input_Switch[1] => ~NO_FANOUT~
+Input_Switch[2] => ~NO_FANOUT~
+Input_Switch[3] => ~NO_FANOUT~
+Input_Switch[4] => ~NO_FANOUT~
+Input_Switch[5] => ~NO_FANOUT~
+Input_Switch[6] => ~NO_FANOUT~
+Input_Switch[7] => ~NO_FANOUT~
+reset => state~7.DATAIN
+clk => state~5.DATAIN
+seven_segment1[0] <= seven_segment1[0].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[1] <= seven_segment1[1].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[2] <= seven_segment1[2].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[3] <= seven_segment1[3].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[4] <= seven_segment1[4].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[5] <= seven_segment1[5].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment1[6] <= seven_segment1[6].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[0] <= seven_segment2[0].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[1] <= seven_segment2[1].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[2] <= seven_segment2[2].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[3] <= seven_segment2[3].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[4] <= seven_segment2[4].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[5] <= seven_segment2[5].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment2[6] <= seven_segment2[6].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[0] <= seven_segment3[0].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[1] <= seven_segment3[1].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[2] <= seven_segment3[2].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[3] <= seven_segment3[3].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[4] <= seven_segment3[4].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[5] <= seven_segment3[5].DB_MAX_OUTPUT_PORT_TYPE
+seven_segment3[6] <= seven_segment3[6].DB_MAX_OUTPUT_PORT_TYPE
+LED[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+LED[1] <= LED[1].DB_MAX_OUTPUT_PORT_TYPE
+LED[2] <= LED[2].DB_MAX_OUTPUT_PORT_TYPE
+LED[3] <= LED[3].DB_MAX_OUTPUT_PORT_TYPE
+LED[4] <= LED[4].DB_MAX_OUTPUT_PORT_TYPE
+LED[5] <= LED[5].DB_MAX_OUTPUT_PORT_TYPE
+LED[6] <= LED[6].DB_MAX_OUTPUT_PORT_TYPE
+LED[7] <= LED[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
