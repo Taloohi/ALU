@@ -10,7 +10,7 @@
 # ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
 #          Updated modelsim.ini.
 # 
-# vcom -93 -work work {C:/Users/taloo/Documents/ALU/ALU.vhd}
+# vcom -93 -work work {C:/Users/ecs/Downloads/REPOS/ALU/ALU.vhd}
 # Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -21,8 +21,19 @@
 # -- Compiling entity ALU
 # -- Compiling architecture operation of ALU
 # 
-vsim work.alu
-# vsim work.alu 
+# vcom -93 -work work {C:/Users/ecs/Downloads/REPOS/ALU/ALU.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package NUMERIC_STD
+# -- Compiling entity ALU
+# -- Compiling architecture operation of ALU
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  ALU
+# vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs=\"+acc\" -t 1ps ALU 
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -30,20 +41,19 @@ vsim work.alu
 # Loading ieee.std_logic_unsigned(body)
 # Loading ieee.numeric_std(body)
 # Loading work.alu(operation)
-add wave -position end  sim:/alu/reset
-add wave -position end  sim:/alu/clk
-add wave -position end  sim:/alu/state
-add wave -position end  sim:/alu/temp
-add wave -position end  sim:/alu/ov
-add wave -position end  sim:/alu/op1
-add wave -position end  sim:/alu/op2
-add wave -position end  sim:/alu/opc
-add wave -position end  sim:/alu/done
-add wave -position end  sim:/alu/result
-force -freeze sim:/alu/reset U 0
-force -freeze sim:/alu/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/alu/op1 10101010 0
-force -freeze sim:/alu/op2 00000011 0
-force -freeze sim:/alu/opc 00000000 0
-force -freeze sim:/alu/opc 00000000 0
-run
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs=\"+acc\" -t 1ps work.alu
+# vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs=\"+acc\" -t 1ps work.alu 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.alu(operation)

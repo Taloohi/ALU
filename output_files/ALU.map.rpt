@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ALU
-Tue Nov 28 02:30:16 2017
+Wed Nov 29 17:05:46 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -43,7 +43,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 28 02:30:16 2017           ;
+; Analysis & Synthesis Status        ; Successful - Wed Nov 29 17:05:46 2017           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ALU                                             ;
 ; Top-level Entity Name              ; ALU                                             ;
@@ -153,18 +153,18 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 12     ;
+; Number detected on machine ; 8      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                ;
-+----------------------------------+-----------------+-----------------+--------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path         ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------+---------+
-; ALU.vhd                          ; yes             ; User VHDL File  ; C:/Users/taloo/Documents/ALU/ALU.vhd ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                    ;
++----------------------------------+-----------------+-----------------+------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path             ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------+---------+
+; ALU.vhd                          ; yes             ; User VHDL File  ; C:/Users/ecs/Downloads/REPOS/ALU/ALU.vhd ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------+---------+
 
 
 +---------------------------------------------------------------+
@@ -219,17 +219,18 @@ Encoding Type:  One-Hot
 +----------+----------+----------+----------+----------+
 
 
-+------------------------------------------------------------+
-; Registers Removed During Synthesis                         ;
-+---------------------------------------+--------------------+
-; Register name                         ; Reason for Removal ;
-+---------------------------------------+--------------------+
-; state.s0                              ; Lost fanout        ;
-; state.s1                              ; Lost fanout        ;
-; state.s2                              ; Lost fanout        ;
-; state.s3                              ; Lost fanout        ;
-; Total Number of Removed Registers = 4 ;                    ;
-+---------------------------------------+--------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; result[0..7]                           ; Stuck at GND due to stuck port data_in ;
+; state.s0                               ; Lost fanout                            ;
+; state.s1                               ; Lost fanout                            ;
+; state.s2                               ; Lost fanout                            ;
+; state.s3                               ; Lost fanout                            ;
+; Total Number of Removed Registers = 12 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -262,7 +263,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Nov 28 02:30:14 2017
+    Info: Processing started: Wed Nov 29 17:05:45 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ALU -c ALU
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
@@ -272,13 +273,12 @@ Info (12127): Elaborating entity "ALU" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at ALU.vhd(11): used implicit default value for signal "seven_segment1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at ALU.vhd(11): used implicit default value for signal "seven_segment2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at ALU.vhd(11): used implicit default value for signal "seven_segment3" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at ALU.vhd(12): used implicit default value for signal "LED" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10036): Verilog HDL or VHDL warning at ALU.vhd(23): object "segment1" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at ALU.vhd(24): object "segment2" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at ALU.vhd(25): object "segment3" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at ALU.vhd(48): object "ov" assigned a value but never read
 Warning (10541): VHDL Signal Declaration warning at ALU.vhd(52): used implicit default value for signal "opc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at ALU.vhd(54): object "result" assigned a value but never read
+Warning (10873): Using initial value X (don't care) for net "temp" at ALU.vhd(47)
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "seven_segment1[0]" is stuck at GND
     Warning (13410): Pin "seven_segment1[1]" is stuck at GND
@@ -326,10 +326,10 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
 Info (21057): Implemented 39 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 29 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 52 warnings
-    Info: Peak virtual memory: 581 megabytes
-    Info: Processing ended: Tue Nov 28 02:30:16 2017
-    Info: Elapsed time: 00:00:02
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 51 warnings
+    Info: Peak virtual memory: 482 megabytes
+    Info: Processing ended: Wed Nov 29 17:05:46 2017
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

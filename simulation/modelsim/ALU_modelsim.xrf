@@ -1,6 +1,7 @@
 vendor_name = ModelSim
-source_file = 1, C:/Users/taloo/Documents/ALU/ALU.vhd
-source_file = 1, C:/Users/taloo/Documents/ALU/db/ALU.cbx.xml
+source_file = 1, C:/Users/ecs/Downloads/REPOS/ALU/ALU.vhd
+source_file = 1, C:/Users/ecs/Downloads/REPOS/ALU/simulation/modelsim/ALU.vht
+source_file = 1, C:/Users/ecs/Downloads/REPOS/ALU/db/ALU.cbx.xml
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd
