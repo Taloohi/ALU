@@ -81,9 +81,7 @@ architecture operation of ALU is
 				segment2 <= D0;
 				segment3 <= D1;
 
-				state <= s2; -- Adnan hasn't done anything 
-				-- Literally nothing
-
+				state <= s2; 
 				
 			when S2 =>
 				
@@ -122,27 +120,25 @@ architecture operation of ALU is
 
 
 				elsif opc = "00000101" then	--OP1 AND OP2;
-					temp <= OP1 and OP2;
+					temp <= op1 and op2;
 					ov <= '0';
 					
 					
 				elsif opc = "00000110" then	--OP1 OR OP2;
-					temp <= OP1 OR OP2;
+					temp <= op1 OR op2;
 					ov <= '0';
 					
 				elsif opc = "00000111" then	--NOT OP1;
-					temp <= NOT OP1;
+					temp <= NOT op1;
 					ov <= '0';
 
 
 				elsif opc = "00001000" then	--OP1 Arithmetic Shift Right;
-				--	temp <= to_stdlogicvector(to_bitvector(OP1) sra to_integer(unsigned(OP2(2 downto 0))));
-					temp <= to_stdlogicvector(to_bitvector(OP1) sra 1);
+					temp <= to_stdlogicvector(to_bitvector(OP1) srl conv_integer(OP2));
 					ov <= '0';
 					
 				elsif opc = "00001001" then	--OP1 Arithmetic Shift Left;
-				--	temp <= to_stdlogicvector(to_bitvector(OP1) sla to_integer(unsigned(OP2(2 downto 0))));
-					temp <= to_stdlogicvector(to_bitvector(OP1) sll 1);
+					temp <= to_stdlogicvector(to_bitvector(OP1) sll conv_integer(OP2));
 					ov <= '0';
 
 				
