@@ -9,6 +9,7 @@ entity ALU is
 	port(Input_Switch: in std_logic_vector(7 downto 0);
 			reset, clk : in std_logic;
 			seven_segment1, seven_segment2, seven_segment3: out std_logic_vector(6 downto 0);
+	   	  	BCD1, BCD2, BCD3: out std_logic_vector(6 downto 0);
 			LED: out std_logic_vector(7 downto 0));
 
 end ALU;
@@ -34,13 +35,8 @@ architecture operation of ALU is
 	constant D7: std_logic_vector(6 downto 0) := "1111000";
 	constant D8: std_logic_vector(6 downto 0) := "0000000";
 	constant D9: std_logic_vector(6 downto 0) := "0010000";
-	constant DA: std_logic_vector(6 downto 0) := "0001000";
-	constant DB: std_logic_vector(6 downto 0) := "0000011";
-	constant DC: std_logic_vector(6 downto 0) := "1000110";
-	constant DD: std_logic_vector(6 downto 0) := "0100001";
-	constant DE: std_logic_vector(6 downto 0) := "0000110";
-	constant DF: std_logic_vector(6 downto 0) := "0001110";
 	constant DS: std_logic_vector(6 downto 0) := "0010010";
+	constant DD: std_logic_vector(6 downto 0) := "0111111";
 
 
 	signal a1, a2: natural range 0 to 255;
@@ -151,15 +147,71 @@ architecture operation of ALU is
 
 
 			result <= temp;
-				
-				
-
 			
-		 
+
+
 
 	    end if;
     end process;
 	 
+display: process (CLK, RESET, seven_segment1, seven_segment2, seven_segment3, result) --binary to hex
+begin
+	seven_segment1 <= conv_integer (unsigned(result)) / 100 ; --changes to integer, then do mod
+	seven_segment2 <= conv_integer (unsigned(result))/10 mod 10;
+	seven_segment3 <= conv_integer (unsigned(result)) mod 10;
+
+	if (RESET='1') then
+		BCD3 <= DD;
+		BCD2 <= DD;
+		BCD1 <= DD;
+		
+	else
+	   case seven_segment1 is
+			when 0 => BCD1 <= D0; --0 to 9 decimal
+			when 1 => BCD1 <= D1;
+			when 2 => BCD1 <= D2;
+			when 3 => BCD1 <= D3;
+			when 4 => BCD1 <= D4;
+			when 5 => BCD1 <= D5;
+			when 6 => BCD1 <= D6;
+			when 7 => BCD1 <= D7;
+			when 8 => BCD1 <= D8;
+			when 9 => BCD1 <= D9;
+			when others => BCD1 <=DD;
+		end case;
+		
+		case seven_segment2 is
+			when 0 => BCD2 <= D0;
+			when 1 => BCD2 <= D1;
+			when 2 => BCD2 <= D2;
+			when 3 => BCD2 <= D3;
+			when 4 => BCD2 <= D4;
+			when 5 => BCD2 <= D5;
+			when 6 => BCD2 <= D6;
+			when 7 => BCD2 <= D7;
+			when 8 => BCD2 <= D8;
+			when 9 => BCD2 <= D9;
+			when others => BCD2 <=DD;
+		end case;
+		
+		case seven_segment3 is
+			when 0 => BCD3 <= D0;
+			when 1 => BCD3 <= D1;
+			when 2 => BCD3 <= D2;
+			when 3 => BCD3 <= D3;
+			when 4 => BCD3 <= D4;
+			when 5 => BCD3 <= D5;
+			when 6 => BCD3 <= D6;
+			when 7 => BCD3 <= D7;
+			when 8 => BCD3 <= D8;
+			when 9 => BCD3 <= D9;
+			when others => BCD3 <=DD;
+		end case;
+		
+	end if;
+end process;		    
+		    
+		    
 	 LED <= result;
 	 
 	 
