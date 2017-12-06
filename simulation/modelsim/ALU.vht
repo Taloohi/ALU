@@ -36,18 +36,20 @@ SIGNAL clk : STD_LOGIC;
 SIGNAL Input_Switch : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL LED : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL reset : STD_LOGIC;
-SIGNAL seven_segment1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-SIGNAL seven_segment2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-SIGNAL seven_segment3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+signal done: std_logic;
+SIGNAL BCD1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL BCD2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL BCD3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 COMPONENT ALU
 	PORT (
 	clk : IN STD_LOGIC;
 	Input_Switch : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 	LED : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 	reset : IN STD_LOGIC;
-	seven_segment1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-	seven_segment2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-	seven_segment3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
+	done: out std_logic;
+	BCD1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	BCD2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	BCD3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
@@ -58,22 +60,119 @@ BEGIN
 	Input_Switch => Input_Switch,
 	LED => LED,
 	reset => reset,
-	seven_segment1 => seven_segment1,
-	seven_segment2 => seven_segment2,
-	seven_segment3 => seven_segment3
+	BCD1 => BCD1,
+	BCD2 => BCD2,
+	BCD3 => BCD3,
+	done => done
 	);
-init : PROCESS                                               
--- variable declarations                                     
-BEGIN                                                        
-        -- code that executes only once                      
-WAIT;                                                       
-END PROCESS init;                                           
-always : PROCESS                                              
--- optional sensitivity list                                  
--- (        )                                                 
--- variable declarations                                      
-BEGIN                                                         
-        -- code executes for every event on sensitivity list  
-WAIT;                                                        
-END PROCESS always;                                          
+
+
+	clk_gen: process 
+	begin -- clock period = 10 ns
+		clk <= '1';
+		wait for 5 ns;
+		clk <= '0';
+		wait for 5 ns;
+
+		if now >= 1500 ns then -- run for 150 cc
+			assert false
+			 report "simulation is completed (not error)."
+			 severity error;
+			wait;
+		end if;
+	end process;
+
+	
+	data_gen: process 
+	begin
+	
+		
+			
+			--OP1 + OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000001";
+			wait for 20 ns;
+			
+			
+			--OP1 - OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000010";
+			wait for 20 ns;
+			
+			
+						--OP1 + 1 ;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000011";
+			wait for 20 ns;
+			
+			
+						--OP1 - 1;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000100";
+			wait for 20 ns;
+			
+			
+						--OP1 AND OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000101";
+			wait for 20 ns;
+			
+			
+			
+			--OP1 OR OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 20 ns;
+			
+			
+			-- NOT OP1 ;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00000111";
+			wait for 20 ns;
+			
+			--OP1 SR OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00001000";
+			wait for 20 ns;
+			
+			
+			
+				--OP1 SL OP2;
+			input_switch <= "11011011";
+			wait for 10 ns;
+			input_switch <= "00000110";
+			wait for 10 ns;
+			input_switch <= "00001001";
+			wait for 20 ns;
+			
+	
+	wait;
+	
+	end process;
+	
+	
 END ALU_arch;
